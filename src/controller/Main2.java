@@ -27,7 +27,7 @@ package controller;
 import model.UserList;
 import view.CLI;
 import view.GUI;
-import view.View;
+//import view.View;
 
 import java.util.Arrays;
 import java.util.HashSet;

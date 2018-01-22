@@ -22,7 +22,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package fr.ece.fauberte.lab3.view;
+package view;
 
 import javax.swing.*;
 import java.util.ArrayList;
