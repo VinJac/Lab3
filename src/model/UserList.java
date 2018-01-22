@@ -1,5 +1,6 @@
 package model;
 
-public class UserList {
+import java.util.List;
 
+public class UserList {
 }
