@@ -33,5 +33,4 @@ public abstract class AbstractView implements View {
 	// each view must be able to be set its event handler (this will be from the controller)
 	@Override
 	public void setController(GUIListener controller) { this.controller = controller; }
-	
 }

@@ -29,7 +29,9 @@ public class Controller implements GUIListener {
 	
 	// constructor
 	public Controller(UserList model, View view) { 
-		this.model = model; 
+		// [EX4] - sets the view as an observer of the model
+		model.addObserver(view);
+		this.model = model;
 		// the current controller is the event handler of its view
 		view.setController(this);
 		this.view = view; 

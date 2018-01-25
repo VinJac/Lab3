@@ -30,6 +30,10 @@ import view.GUI;
 /**
  * @author Frédéric Fauberteau
  */
+
+/* Main class
+ * Contains the output resulting from EX1-2-3-4
+ */
 public class Main {
 
     public static void main(String[] args) {
@@ -38,5 +42,4 @@ public class Main {
         Controller controller = new Controller(model, gui);
         controller.start();
     }
-
 }

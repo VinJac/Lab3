@@ -27,6 +27,7 @@ package view;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Observable;
 
 import model.*;
 
@@ -84,6 +85,16 @@ public class GUI extends AbstractView {
         frame.setVisible(true);
     }
     
+    /* [EX4] - the update method is specific to the GUI, so we implement it here
+     * to simplify we chose to refresh the entire list every time a modification has
+     * occurred in the model
+    */
+	@Override
+	public void update(Observable o, Object userToAdd) {
+		String[] users = getModel().getData();	
+		list.setListData(users);
+	}
+	
     public static void main(String[] args) {
     	// we add the UserList as the model
         GUI gui = new GUI(new UserList(), "foo", 320, 240);		
