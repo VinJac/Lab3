@@ -25,23 +25,21 @@
 package view;
 
 import javax.swing.*;
-
-import model.Model;
-
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
+
+import model.*;
 
 /**
  * @author Frédéric Fauberteau
  */
-public class GUI extends AbstractView implements View {
+public class GUI extends AbstractView {
 
     private final JFrame frame;
     private final JList<String> list = new JList<>();
 
-    public GUI(String title, int width, int height, Model model) {
+    // we now add a model component to the GUI constructor
+    public GUI(Model model, String title, int width, int height) {
     	super(model);
         frame = new JFrame(title);
         frame.setSize(width, height);
@@ -65,33 +63,30 @@ public class GUI extends AbstractView implements View {
         frame.setJMenuBar(menuBar);
     }
 
+    // EX3 - Question 4. - adding the action listener to the JTextField
     private void configJPanel() {
         JPanel panel = new JPanel();
         frame.getContentPane().add(panel);
         panel.setLayout(new BorderLayout());
+        
         final JTextField textField = new JTextField();
+        textField.addActionListener(getController().getAddUserListener(textField));
+        
         panel.add(textField, BorderLayout.PAGE_START);
         panel.add(list, BorderLayout.CENTER);
     }
 
-    @Override
+    // now the start method implements the one defined in the View interface
+    @Override					
     public void start() {
         configJMenuBar();
         configJPanel();
         frame.setVisible(true);
     }
-
-    @Override
-	public void setController(GUIListener controller) {
-		// TODO Auto-generated method stub
-		
-	}
     
     public static void main(String[] args) {
-        GUI gui = new GUI("foo", 320, 240);
+    	// we add the UserList as the model
+        GUI gui = new GUI(new UserList(), "foo", 320, 240);		
         gui.start();
     }
-
-	
-
 }

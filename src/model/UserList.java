@@ -15,7 +15,7 @@ public class UserList implements Model {
 	public UserList() { userList = new ArrayList<String>(); }
 	
 	// adds a user to the list - returns true if the list was changed, false otherwise
-	boolean addUser(String user) { return userList.add(user); }
+	public boolean addUser(String user) { return userList.add(user); }
 
 	// returns a String[] version of the user list
     public String[] getData() {
