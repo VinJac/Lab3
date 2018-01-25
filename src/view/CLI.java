@@ -25,15 +25,27 @@
 package view;
 
 import javax.swing.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
+import model.Model;
+
 /**
  * @author Frédéric Fauberteau
  */
-public class CLI /* TODO: make this class a View */ {
 
+/* CLI class
+ * the second view (Command Line Interface), it therefore has to extend AbstractView
+ */
+public class CLI extends AbstractView {
+
+	// constructor, to specify the relevant model
+	public CLI(Model model) {
+		super(model);
+	}
+	
     public void update(Observable o, Object arg) {
         new SwingWorker<List<String>,String>() {
 
@@ -41,7 +53,8 @@ public class CLI /* TODO: make this class a View */ {
 
             @Override
             protected List<String> doInBackground() throws Exception {
-                String[] data; // TODO: get data
+            	// we get data from the model | the same way as for the GUI
+                String[] data = getModel().getData();					
                 int index = 0;
                 while (index < data.length && ! isCancelled()) {
                     users.add(data[index]);
@@ -65,5 +78,11 @@ public class CLI /* TODO: make this class a View */ {
 
         }.execute();
     }
+
+	@Override
+	public void start() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
