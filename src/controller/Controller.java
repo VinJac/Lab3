@@ -2,6 +2,8 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
+import java.util.Set;
 
 import javax.swing.text.JTextComponent;
 
@@ -25,20 +27,29 @@ import view.*;
 public class Controller implements GUIListener {
 
 	private UserList model;
-	private View view;
+	private Set<View> viewSet;
 	
 	// constructor
-	public Controller(UserList model, View view) { 
+	public Controller(UserList model, Set<View> viewSet) { 
 		// [EX4] - sets the view as an observer of the model
-		model.addObserver(view);
+		Iterator<View> iterator = viewSet.iterator();
+		while(iterator.hasNext()){
+			View tmp = iterator.next();
+			model.addObserver(tmp);
+			tmp.setController(this);
+		}
 		this.model = model;
 		// the current controller is the event handler of its view
-		view.setController(this);
-		this.view = view; 
+		this.viewSet = viewSet; 
 	}
 	
 	// starts the controller's view
-	public void start() { view.start(); }
+	public void start() { 
+		Iterator<View> iterator = viewSet.iterator();
+		while(iterator.hasNext()){
+			iterator.next().start();
+		}
+	}
 
 	// returns an ActionListener that handles the event of the JTextField
 	// component of the GUI. => adding the entered text as a user in the user list.
