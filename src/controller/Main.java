@@ -24,8 +24,12 @@
 
 package controller;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import model.UserList;
 import view.GUI;
+import view.View;
 
 /**
  * @author Frédéric Fauberteau
@@ -39,7 +43,11 @@ public class Main {
     public static void main(String[] args) {
         UserList model = new UserList();
         GUI gui = new GUI(model, "Lab3", 320, 240);
-        Controller controller = new Controller(model, gui);
+        
+        // [EX5] added in order for it to compile
+        Set<View> views = new HashSet<View>();
+        views.add(gui);
+        Controller controller = new Controller(model, views);
         controller.start();
     }
 }

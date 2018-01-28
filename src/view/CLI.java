@@ -81,8 +81,7 @@ public class CLI extends AbstractView {
 
 	@Override
 	public void start() {
-		// TODO Auto-generated method stub
-		
+		// [EX5] - nothing to do here
 	}
 
 }

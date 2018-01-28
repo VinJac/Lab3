@@ -27,13 +27,13 @@ package controller;
 import model.UserList;
 import view.CLI;
 import view.GUI;
-//import view.View;
-
 import view.View;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Frédéric Fauberteau
@@ -47,8 +47,25 @@ public class Main2 {
         Set<View> set = new HashSet<>(Arrays.asList(gui, cli));
         Controller controller = new Controller(model, set);
         controller.start();
+        
         model.addUser("triaxx");
+        
+        // Rk: we don't need to add this, but it works better if we mark a pause between
+        // users adding (because the CLI starts a new thread, that will otherwise capture
+        // all the added users, three times)
+        try {
+			TimeUnit.MILLISECONDS.sleep(50);		// waits 50ms, then adds the second
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
         model.addUser("violine");
+        
+        try {
+        	TimeUnit.MILLISECONDS.sleep(50);		// waits 50ms, then adds the third
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+        
         model.addUser("root");
     }
 

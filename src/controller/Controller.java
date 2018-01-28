@@ -27,23 +27,23 @@ import view.*;
 public class Controller implements GUIListener {
 
 	private UserList model;
+	// [EX5] - the controller is now built from a set of views
 	private Set<View> viewSet;
 	
 	// constructor
 	public Controller(UserList model, Set<View> viewSet) { 
-		// [EX4] - sets the view as an observer of the model
+		// [EX4 | EX5] - sets the views observers of the model
 		Iterator<View> iterator = viewSet.iterator();
 		while(iterator.hasNext()){
-			View tmp = iterator.next();
-			model.addObserver(tmp);
-			tmp.setController(this);
+			View view = iterator.next();
+			model.addObserver(view);		// each view is an observer of the model
+			view.setController(this);		// the current controller is the event handler of its views
 		}
 		this.model = model;
-		// the current controller is the event handler of its view
 		this.viewSet = viewSet; 
 	}
 	
-	// starts the controller's view
+	// starts the controller's views
 	public void start() { 
 		Iterator<View> iterator = viewSet.iterator();
 		while(iterator.hasNext()){
